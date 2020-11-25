@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:element name="root">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element name="STUDENT" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ID" type="xs:int"/>
+            <xs:element name="LNAME" type="xs:string"/>
+            <xs:element name="FNAME" type="xs:string"/>
+            <xs:element name="SCHOOL_NO" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SCHOOL" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="SCHOOL_NO" type="xs:int"/>
+            <xs:element name="SCHOOL_NAME" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="TUTOR" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="TUTOR_ID" type="xs:int"/>
+            <xs:element name="NAME" type="xs:string"/>
+            <xs:element name="RATE" type="xs:int"/>
+            <xs:element name="COMPANY" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="QUESTION_RAISED" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="QUESTION_ID" type="xs:int"/>
+            <xs:element name="STU_ID" type="xs:int"/>
+            <xs:element name="SUBJECT" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="WORKS_ON" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="TUTOR_ID" type="xs:int"/>
+            <xs:element name="QUESTION_ID" type="xs:int"/>
+            <xs:element name="HOURS" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+</xs:schema>

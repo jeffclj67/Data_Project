@@ -1,0 +1,226 @@
+<html>
+  <head>
+    <style>
+      /* body {
+        background-color: lightblue;
+        opacity: 0.3;
+      } */
+      table, th, td{
+        border-bottom: 1px solid #ddd;
+        border-collapse:collapse;
+      }
+      th, td{
+        padding: 5px;
+      }
+      #title li {
+        display: inline-block;
+        font-size: 20px;
+        padding: 20px;
+      }  
+      h3{
+      font-family: 'Times New Roman', Times, serif;
+      text-align: center;
+      }
+      .wrapper{
+        text-align: center;
+        /* border: 3px solid blue; */
+        display: block;
+        justify-content:center;
+      }
+      #table{
+        display: inline-block;
+      }
+      
+
+  </style>
+  </head>
+
+  <body>
+  <div class="wrapper">
+  <div id = "title">
+  <ol id="title"> 
+  <h1>Homework Share Database</h1>
+  <li><h3 onclick="loadStudent()">Student</button></li>
+  <li><h3 onclick="loadSchool()">School</button></li>
+  <li><h3 onclick="loadTutor()">Tutor</button></li>
+  <li><h3 onclick="loadQuestions()">Questions</button></li>
+  <li><h3 onclick="loadWorksOn()">Works_On</button></li>
+  </ul>
+  <HR width="50%" SIZE=1>
+  </div>
+  <div id="table" >
+  <table id="student"></table>
+  <table id="school"></table>
+  <table id="tutor"></table>
+  <table id="questions"></table>
+  <table id="workson"></table>
+  </div>
+  </div>
+   
+
+  <script>
+    function loadStudent(){
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200){
+          showStudent(this);
+          // showSchool(this);
+          // showTutor(this);
+          // showQuestion(this);
+          // showWorksOn(this);
+        }
+      };
+      xmlhttp.open("GET", "table.xml", true);
+      xmlhttp.send();
+     } 
+
+    function loadSchool(){
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200){
+          //showStudent(this);
+          showSchool(this);
+          // showTutor(this);
+          // showQuestion(this);
+          // showWorksOn(this);
+        }
+      };
+      xmlhttp.open("GET", "table.xml", true);
+      xmlhttp.send();
+     } 
+
+    function loadTutor(){
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200){
+          //showStudent(this);
+          //showSchool(this);
+          showTutor(this);
+          // showQuestion(this);
+          // showWorksOn(this);
+        }
+      };
+      xmlhttp.open("GET", "table.xml", true);
+      xmlhttp.send();
+     } 
+    
+    function loadQuestions(){
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200){
+          //showStudent(this);
+          //showSchool(this);
+          //showTutor(this);
+          showQuestion(this);
+          // showWorksOn(this);
+        }
+      };
+      xmlhttp.open("GET", "table.xml", true);
+      xmlhttp.send();
+     } 
+
+    function loadWorksOn(){
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200){
+          //showStudent(this);
+          //showSchool(this);
+          //showTutor(this);
+          //showQuestion(this);
+          showWorksOn(this);
+        }
+      };
+      xmlhttp.open("GET", "table.xml", true);
+      xmlhttp.send();
+     }
+
+     function showStudent(xml){
+       var i;
+       var xmlDoc = xml.responseXML;
+       var table = "<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>School_No</th></tr>";
+       var x = xmlDoc.getElementsByTagName("STUDENT");
+       for (i =0; i < x.length; i++){
+         table += "<tr><td>";
+         table += x[i].getElementsByTagName("ID")[0].childNodes[0].nodeValue;
+         table += "</td><td>";
+         table += x[i].getElementsByTagName("FNAME")[0].childNodes[0].nodeValue;
+         table += "</td><td>";
+         table += x[i].getElementsByTagName("LNAME")[0].childNodes[0].nodeValue;
+         table += "</td><td>"
+         table += x[i].getElementsByTagName("SCHOOL_NO")[0].childNodes[0].nodeValue;
+         table += "</td></tr>";
+       }
+       document.getElementById("student").innerHTML = table;
+     }
+
+     function showSchool(xml){
+       var i;
+       var xmlDoc = xml.responseXML;
+       var table = "<tr><th>School_No</th><th>School_NAME</th></tr>";
+       var x = xmlDoc.getElementsByTagName("SCHOOL");
+       for (i =0; i < x.length; i++){
+         table += "<tr><td>";
+         table += x[i].getElementsByTagName("SCHOOL_NO")[0].childNodes[0].nodeValue;
+         table += "</td><td>";
+         table += x[i].getElementsByTagName("SCHOOL_NAME")[0].childNodes[0].nodeValue;
+         table += "</td></tr>";
+       }
+       document.getElementById("school").innerHTML = table;
+     }
+
+     function showTutor(xml){
+       var i;
+       var xmlDoc = xml.responseXML;
+       var table = "<tr><th>TUTOR_ID</th><th>Name</th><th>Rate</th><th>Company</th></tr>";
+       var x = xmlDoc.getElementsByTagName("TUTOR");
+       for (i =0; i < x.length; i++){
+         table += "<tr><td>";
+         table += x[i].getElementsByTagName("TUTOR_ID")[0].childNodes[0].nodeValue;
+         table += "</td><td>";
+         table += x[i].getElementsByTagName("NAME")[0].childNodes[0].nodeValue;
+         table += "</td><td>";
+         table += x[i].getElementsByTagName("RATE")[0].childNodes[0].nodeValue;
+         table += "</td><td>"
+         table += x[i].getElementsByTagName("COMPANY")[0].childNodes[0].nodeValue;
+         table += "</td></tr>";
+       }
+       document.getElementById("tutor").innerHTML = table;
+     }
+
+     function showQuestion(xml){
+       var i;
+       var xmlDoc = xml.responseXML;
+       var table = "<tr><th>QUESTION_ID</th><th>Student ID</th><th>Subject</th></tr>";
+       var x = xmlDoc.getElementsByTagName("QUESTION_RAISED");
+       for (i =0; i < x.length; i++){
+         table += "<tr><td>";
+         table += x[i].getElementsByTagName("QUESTION_ID")[0].childNodes[0].nodeValue;
+         table += "</td><td>";
+         table += x[i].getElementsByTagName("STU_ID")[0].childNodes[0].nodeValue;
+         table += "</td><td>";
+         table += x[i].getElementsByTagName("SUBJECT")[0].childNodes[0].nodeValue;
+         table += "</td></tr>";
+       }
+       document.getElementById("questions").innerHTML = table;
+     }
+
+     function showWorksOn(xml){
+       var i;
+       var xmlDoc = xml.responseXML;
+       var table = "<tr><th>QUESTION_ID</th><th>Tutor ID</th><th>Hours</th></tr>";
+       var x = xmlDoc.getElementsByTagName("WORKS_ON");
+       for (i =0; i < x.length; i++){
+         table += "<tr><td>";
+         table += x[i].getElementsByTagName("QUESTION_ID")[0].childNodes[0].nodeValue;
+         table += "</td><td>";
+         table += x[i].getElementsByTagName("TUTOR_ID")[0].childNodes[0].nodeValue;
+         table += "</td><td>";
+         table += x[i].getElementsByTagName("HOURS")[0].childNodes[0].nodeValue;
+         table += "</td></tr>";
+       }
+       document.getElementById("workson").innerHTML = table;
+     }
+
+  </script>
+  </body>
+</html>
